@@ -33,5 +33,18 @@
 //null null
 
 function isBalanced(root) {
-
+    if(!root) return true;
+    let balanced = true;
+    function height(subTree) {
+        if(!subTree) return 0;
+        let leftHeight = (1+ height(subTree.left));
+        let rightHeight = (1+ height(subTree.right));
+        if(Math.abs(leftHeight -rightHeight) >=2) {
+             balanced = false;
+            return;
+        }
+        return Math.max(leftHeight, rightHeight);
+    }
+    height(root);
+    return balanced;
 }
